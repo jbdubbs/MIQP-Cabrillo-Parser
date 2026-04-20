@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MQP Score Calculator</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <header>
+    <h1>MQP Score Calculator</h1>
+    <span class="subtitle">Michigan QSO Party &mdash; Cabrillo Log Scorer</span>
+  </header>
+
+  <main>
+    <!-- Setup -->
+    <div class="setup-card">
+      <h2>Setup</h2>
+
+      <div class="section-title">Station Type</div>
+      <div class="station-type">
+        <label>
+          <input type="radio" name="station-type" value="michigan" checked>
+          Michigan Station (county mults + states/provinces/DX)
+        </label>
+        <label>
+          <input type="radio" name="station-type" value="non-michigan">
+          Non-Michigan Station (Michigan counties only)
+        </label>
+      </div>
+
+      <div class="section-title">Cabrillo Log File</div>
+      <div class="drop-zone" id="drop-zone">
+        <input type="file" id="file-input" accept=".log,.cbr,.txt,.cabrillo">
+        <div class="icon">📁</div>
+        <p>Drop your Cabrillo file here or click to browse</p>
+        <div class="filename" id="file-name">No file selected</div>
+      </div>
+
+      <button class="btn-primary" id="calc-btn" disabled>Calculate Score</button>
+    </div>
+
+    <!-- Results -->
+    <section id="results">
+
+      <!-- Results toolbar -->
+      <div class="results-toolbar">
+        <span class="section-title" style="margin-bottom:0">Score Summary</span>
+        <button class="btn-print" id="print-btn" title="Print report">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          Print Report
+        </button>
+      </div>
+
+      <!-- Score Summary -->
+      <div class="print-report-header" id="print-report-header"></div>
+      <div class="score-summary" id="score-summary"></div>
+      <div class="formula" id="formula"></div>
+
+      <!-- Warnings -->
+      <details id="warnings-details" class="warnings-panel" style="display:none">
+        <summary>
+          ⚠️ Warnings &amp; Errors &nbsp;<span id="warnings-count"></span>
+          <span class="chevron">▼</span>
+        </summary>
+        <div class="warnings-list" id="warnings-list"></div>
+      </details>
+
+      <!-- Band/Mode Breakdown -->
+      <div class="breakdown-section">
+        <div class="section-title">Band / Mode Breakdown</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Band</th>
+              <th>Mode</th>
+              <th>QSOs</th>
+              <th>Pts Each</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody id="breakdown-tbody"></tbody>
+          <tfoot id="breakdown-tfoot"></tfoot>
+        </table>
+      </div>
+
+      <!-- Multipliers -->
+      <div class="mults-section">
+        <div class="section-title">Multipliers</div>
+        <div class="mult-legend">
+          <span><span class="dot dot-cw"></span> CW only</span>
+          <span><span class="dot dot-ph"></span> SSB only</span>
+          <span><span class="dot dot-both"></span> CW + SSB</span>
+          <span style="opacity:0.5">◻ Not worked</span>
+        </div>
+        <div class="mults-grid" id="mults-container"></div>
+      </div>
+
+      <!-- QSO Log -->
+      <div class="qso-log-section">
+        <details class="qso-log">
+          <summary>
+            QSO Log Detail
+            <span class="chevron">▼</span>
+          </summary>
+          <div class="qso-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Line</th>
+                  <th>Freq</th>
+                  <th>Mode</th>
+                  <th>Date / Time</th>
+                  <th>Sent Call</th>
+                  <th>Sent QTH</th>
+                  <th>Rcv Call</th>
+                  <th>Rcv QTH</th>
+                  <th>Pts</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="qso-tbody"></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+
+    </section>
+  </main>
+
+  <script type="module" src="src/ui/app.js"></script>
+</body>
+</html>
