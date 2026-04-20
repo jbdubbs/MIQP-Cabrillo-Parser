@@ -43,7 +43,7 @@ A browser-based score calculator for the **Michigan QSO Party (MIQP)**. Upload a
 ### Running locally
 
 ```bash
-git clone <repo-url>
+git clone jbdubbs/MIQP-Cabrillo-Parser
 cd stateQSOMultCalc
 ./server.sh start
 ```
