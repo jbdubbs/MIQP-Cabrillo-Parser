@@ -1,6 +1,6 @@
-# MQP Score Calculator
+# MIQP Score Calculator
 
-A browser-based score calculator for the **Michigan QSO Party (MQP)**. Upload a Cabrillo 3.0 log file, select your station type, and instantly see your claimed score broken down by band, mode, and multiplier.
+A browser-based score calculator for the **Michigan QSO Party (MIQP)**. Upload a Cabrillo 3.0 log file, select your station type, and instantly see your claimed score broken down by band, mode, and multiplier.
 
 ---
 
